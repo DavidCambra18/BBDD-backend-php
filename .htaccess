@@ -1,0 +1,12 @@
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Habilitar CORS
+Header set Access-Control-Allow-Origin "http://127.0.0.1:5500"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Redirigir todas las solicitudes a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

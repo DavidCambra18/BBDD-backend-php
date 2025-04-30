@@ -1,0 +1,167 @@
+[22-Apr-2025 11:52:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\rpg-api\controllers\combat_controller.php on line 21
+[22-Apr-2025 11:52:28 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\rpg-api\controllers\combat_controller.php on line 142
+[22-Apr-2025 11:52:28 Europe/Berlin] Session state before check: {"session_id":"csehpcrbccku1quau49mfkmmjc","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 11:52:55 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\rpg-api\controllers\combat_controller.php on line 21
+[22-Apr-2025 11:53:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\rpg-api\controllers\combat_controller.php on line 142
+[22-Apr-2025 11:53:10 Europe/Berlin] Session state before check: {"session_id":"630c0shqc87f1t6ugumqr0356s","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:07:20 Europe/Berlin] Session state before check: {"session_id":"edrjr6kk5cvsrhcutj433pomv5","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:29:07 Europe/Berlin] Session state before check: {"session_id":"c7gt9k78fbamjs7q8vjjq9b0ee","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:29:09 Europe/Berlin] Session state before check: {"session_id":"c5c882bs2sae8dneht88d9nj1s","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:35:43 Europe/Berlin] Session state before check: {"session_id":"ar03lr9vkjc1ktrt7pmvh0g9t5","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:35:47 Europe/Berlin] Session state before check: {"session_id":"pv8siquo2d2dh6maf10fsoc8ha","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:40:18 Europe/Berlin] Session state before check: {"session_id":"3rgiiki8271tknj8g894oj3cu8","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:40:35 Europe/Berlin] Session state before check: {"session_id":"un1jn9d9u5lmts0igv0gm513b6","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:45:48 Europe/Berlin] Session state before check: {"session_id":"43a1jmospqmijtntm258d8181k","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 12:49:01 Europe/Berlin] Session state before check: {"session_id":"v6riqmhcmh5ikg57mf692rj0cj","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:49:17 Europe/Berlin] Session state before check: {"session_id":"6fh5o6ap813fs8fqegfn0msr28","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:49:20 Europe/Berlin] Session state before check: {"session_id":"m3r4lpi24bau2e98gb8i5r07hq","combat_active":"not set","has_enemy":"no"}
+[22-Apr-2025 12:53:20 Europe/Berlin] Session state before check: {"session_id":"jq5icqb0p30vq7d7heiqhfl6p6","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 12:55:24 Europe/Berlin] Session state before check: {"session_id":"9v3uqaocn2b6u6a5a1njtc6bj6","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 12:55:27 Europe/Berlin] Session state before check: {"session_id":"9v3uqaocn2b6u6a5a1njtc6bj6","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 13:10:16 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 13:10:18 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 13:11:18 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 13:11:20 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 13:11:20 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[22-Apr-2025 13:11:21 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:12:59 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:28:18 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:29:27 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:35:26 Europe/Berlin] Session state before check: {"session_id":"15o50a87712fr8d7vee7ccjmtp","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:37:02 Europe/Berlin] Session state before check: {"session_id":"fv668gg2knqcbs8jsn0eh0cavm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:38:15 Europe/Berlin] Session state before check: {"session_id":"fv668gg2knqcbs8jsn0eh0cavm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:41:19 Europe/Berlin] Session state before check: {"session_id":"fv668gg2knqcbs8jsn0eh0cavm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:42:28 Europe/Berlin] Session state before check: {"session_id":"fv668gg2knqcbs8jsn0eh0cavm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:43:29 Europe/Berlin] Session state before check: {"session_id":"fv668gg2knqcbs8jsn0eh0cavm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 08:44:13 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\rpg-api\controllers\game_controller.php on line 52
+[23-Apr-2025 08:55:07 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:43
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(43): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 43
+[23-Apr-2025 08:56:07 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:43
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(43): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 43
+[23-Apr-2025 08:56:38 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:43
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(43): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 43
+[23-Apr-2025 08:56:48 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:43
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(43): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 43
+[23-Apr-2025 08:57:15 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 08:57:35 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 08:57:43 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 09:01:12 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 09:01:16 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 09:07:38 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli::__construct(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', '3307', Object(SensitiveParameterValue), '', 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 09:07:48 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli::__construct(): Argument #5 ($port) must be of type ?int, string given in C:\xampp\htdocs\rpg-api\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\rpg-api\index.php(44): mysqli->__construct('localhost', '3307', Object(SensitiveParameterValue), '', 'rpg_game')
+#1 {main}
+  thrown in C:\xampp\htdocs\rpg-api\index.php on line 44
+[23-Apr-2025 12:23:22 Europe/Berlin] Session state before check: {"session_id":"28vfvuf3f7dmsmcfigdqjs8qnm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 12:28:39 Europe/Berlin] Session state before check: {"session_id":"28vfvuf3f7dmsmcfigdqjs8qnm","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 13:34:49 Europe/Berlin] Session state before check: {"session_id":"abl9p1jk7k32ln8uriuij6bhjs","combat_active":true,"has_enemy":"yes"}
+[23-Apr-2025 13:34:56 Europe/Berlin] Session state before check: {"session_id":"abl9p1jk7k32ln8uriuij6bhjs","combat_active":true,"has_enemy":"yes"}
+[25-Apr-2025 10:29:54 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[25-Apr-2025 10:29:55 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[25-Apr-2025 10:29:57 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[25-Apr-2025 10:29:58 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[25-Apr-2025 10:30:23 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[25-Apr-2025 10:30:27 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[25-Apr-2025 10:30:37 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'rpg_game' in C:\xampp\htdocs\php-inicio\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\php-inicio\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\php-inicio\index.php on line 44
+[30-Apr-2025 13:54:18 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: MySQL server has gone away in C:\xampp\htdocs\backend-php\controllers\map_controller.php:63
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\controllers\map_controller.php(63): mysqli_stmt->execute()
+#1 C:\xampp\htdocs\backend-php\controllers\map_controller.php(29): MapController->generateMap()
+#2 C:\xampp\htdocs\backend-php\index.php(116): MapController->getMap()
+#3 {main}
+  thrown in C:\xampp\htdocs\backend-php\controllers\map_controller.php on line 63
+[30-Apr-2025 13:54:41 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend-php\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 44
+[30-Apr-2025 13:54:45 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend-php\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 44
+[30-Apr-2025 13:55:09 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend-php\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 44
+[30-Apr-2025 13:55:39 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend-php\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 44
+[30-Apr-2025 13:56:08 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend-php\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 44
+[30-Apr-2025 13:56:53 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\backend-php\index.php:44
+Stack trace:
+#0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
+#1 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 44
