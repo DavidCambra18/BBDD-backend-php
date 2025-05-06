@@ -32,7 +32,7 @@ $conn->select_db($dbname);
 
 // Crear tablas
 
-// Tabla de jugadores
+// TABLA DE JUGADORES
 $sql = "CREATE TABLE IF NOT EXISTS players (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -51,7 +51,39 @@ if ($conn->query($sql) === FALSE) {
 
 echo "Tabla players creada correctamente.<br>";
 
-// Tabla de casillas del mapa
+// TABLA DE OBJETOS
+$sql = "CREATE TABLE IF NOT EXISTS objects (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    description VARCHAR(200) NOT NULL
+)";
+
+if ($conn->query($sql) === FALSE) {
+    die("Error al crear tabla objects: " . $conn->error);
+}
+
+echo "Tabla objects creada correctamente.<br>";
+
+
+// TABLA DE OBJETOS RECOGIDOS POR EL JUGADOR
+$sql = "CREATE TABLE IF NOT EXISTS object_player (
+    objectId INT AUTO_INCREMENT,
+    playerId INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    PRIMARY KEY(objectId, playerId),
+    FOREIGN KEY (objectId) REFERENCES objects(id),
+    FOREIGN KEY (playerId) REFERENCES players(id)
+)";
+
+if ($conn->query($sql) === FALSE) {
+    die("Error al crear tabla object_player: " . $conn->error);
+}
+
+echo "Tabla object_player creada correctamente.<br>";
+
+
+// TABLA DE CASILLAS DEL MAPA
 $sql = "CREATE TABLE IF NOT EXISTS map_tiles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     x INT NOT NULL,
@@ -67,7 +99,26 @@ if ($conn->query($sql) === FALSE) {
 
 echo "Tabla map_tiles creada correctamente.<br>";
 
-// Tabla de enemigos
+
+// TABLA DE OBJETOS DEL MAPA
+$sql = "CREATE TABLE IF NOT EXISTS object_map (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    tilesId INT NOT NULL,
+    objectId INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    is_taken BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (tilesId) REFERENCES map_tiles(id),
+    FOREIGN KEY (objectId) REFERENCES objects(id)
+)";
+
+if ($conn->query($sql) === FALSE) {
+    die("Error al crear tabla object_map: " . $conn->error);
+}
+
+echo "Tabla object_map creada correctamente.<br>";
+
+
+// TABLA DE ENEMIGOS
 $sql = "CREATE TABLE IF NOT EXISTS enemies (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -83,7 +134,8 @@ if ($conn->query($sql) === FALSE) {
 
 echo "Tabla enemies creada correctamente.<br>";
 
-// Tabla de estadísticas del jugador
+
+// TABLA DE ESTADISTICAS DEL JUGADOR
 $sql = "CREATE TABLE IF NOT EXISTS player_stats (
     player_id INT PRIMARY KEY,
     battles_won INT DEFAULT 0,
