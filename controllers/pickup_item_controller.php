@@ -31,9 +31,10 @@ class PickUpController
 
         // Buscar objeto en esa casilla
         $sql = "
-            SELECT om.id AS object_map_id, om.objectId, om.quantity
+            SELECT om.id AS object_map_id, om.objectId, om.quantity, o.effect_value, o.type
             FROM object_map om
             JOIN map_tiles mt ON om.tilesId = mt.id
+            JOIN objects o ON om.objectId = o.id
             WHERE mt.x = ? AND mt.y = ? AND om.is_taken = 0
             LIMIT 1
         ";

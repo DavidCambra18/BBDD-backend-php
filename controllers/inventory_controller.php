@@ -4,14 +4,17 @@
  * InventoryController - Controlador para usar los objetos del inventario
  */
 
- class InventoryController {
+class InventoryController
+{
     private $conn;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    public function useItem($playerId, $objectId) {
+    public function useItem($playerId, $objectId)
+    {
         // Verificar si el jugador tiene el objeto
         $sql = "SELECT quantity FROM object_player WHERE playerId = ? AND objectId = ?";
         $stmt = $this->conn->prepare($sql);
@@ -28,8 +31,8 @@
             send_response(400, ['error' => 'Cantidad insuficiente.']);
         }
 
-        // Obtener tipo del objeto
-        $sql = "SELECT type, effect_value FROM object_type WHERE id = ?";
+        // Obtener tipo y efecto del objeto
+        $sql = "SELECT type, effect_value FROM objects WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $objectId);
         $stmt->execute();

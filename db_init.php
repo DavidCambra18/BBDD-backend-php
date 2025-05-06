@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Script de inicialización de la base de datos para el juego RPG
  * Este script crea las tablas necesarias y las carga con datos iniciales
@@ -161,21 +162,21 @@ if ($row['count'] == 0) {
     // Insertar jugador inicial
     $sql = "INSERT INTO players (name, level, health, max_health, experience, strength, position_x, position_y) 
             VALUES ('Aventurero', 1, 100, 100, 0, 10, 1, 1)";
-    
+
     if ($conn->query($sql) === FALSE) {
         die("Error al insertar jugador inicial: " . $conn->error);
     }
-    
+
     echo "Jugador inicial creado.<br>";
-    
+
     // Insertar estadísticas iniciales para el jugador
     $sql = "INSERT INTO player_stats (player_id, battles_won, battles_lost, steps_taken) 
             VALUES (1, 0, 0, 0)";
-    
+
     if ($conn->query($sql) === FALSE) {
         die("Error al insertar estadísticas iniciales: " . $conn->error);
     }
-    
+
     echo "Estadísticas iniciales creadas.<br>";
 }
 
@@ -197,20 +198,20 @@ if ($row['count'] == 0) {
         ['Mantícora', 4, 50, 18, 70],
         ['Dragón joven', 5, 80, 25, 100]
     ];
-    
+
     $stmt = $conn->prepare("INSERT INTO enemies (name, level, health, strength, experience_reward) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("siiii", $name, $level, $health, $strength, $exp_reward);
-    
+
     foreach ($enemies as $enemy) {
         $name = $enemy[0];
         $level = $enemy[1];
         $health = $enemy[2];
         $strength = $enemy[3];
         $exp_reward = $enemy[4];
-        
+
         $stmt->execute();
     }
-    
+
     echo "Enemigos iniciales creados.<br>";
 }
 
@@ -222,8 +223,47 @@ if ($row['count'] == 0) {
     echo "No hay mapa creado. El mapa se generará automáticamente cuando se solicite por primera vez.<br>";
 }
 
+// Verificar si ya hay objetos
+$result = $conn->query("SELECT COUNT(*) as count FROM objects");
+$row = $result->fetch_assoc();
+
+if ($row['count'] == 0) {
+    // Insertar objetos básicos
+    $objects = [
+        ['Poción de salud', 'potion', 'Restaura salud del jugador.', 10],
+        ['Poción de maná', 'potion', 'Restaura maná del jugador.', 15],
+        ['Espada de hierro', 'weapon', 'Una espada básica de hierro.', 0],
+        ['Armadura de cuero', 'armor', 'Armadura ligera de cuero.', 0],
+        ['Pergamino de fuego', 'scroll', 'Lanza un hechizo de fuego.', 30],
+        ['Báculo mágico', 'weapon', 'Báculo que aumenta el poder mágico.', 20]
+    ];
+
+    $stmt = $conn->prepare("INSERT INTO objects (name, type, description, effect_value) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sssi", $name, $type, $description, $effect_value);
+
+    // Insertar los objetos predeterminados
+    foreach ($objects as $object) {
+        $name = $object[0];
+        $type = $object[1];
+        $description = $object[2];
+        $effect_value = $object[3];
+
+        $stmt->execute();
+    }
+
+    echo "Objetos iniciales creados.<br>";
+}
+
+// Verificar si ya hay objetos en el mapa
+$result = $conn->query("SELECT COUNT(*) as count FROM object_map");
+$row = $result->fetch_assoc();
+
+if ($row['count'] == 0) {
+    // Insertar objetos en el mapa, si no existen ya
+    echo "No hay objetos en el mapa. Se generarán automáticamente cuando se soliciten.<br>";
+}
+
 echo "<br>¡Inicialización de la base de datos completada con éxito!";
 
 // Cerrar la conexión
 $conn->close();
-?>

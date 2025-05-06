@@ -124,146 +124,169 @@ class PlayerController
      * Mueve al jugador en el mapa
      */
     public function movePlayer($data)
-    {
-        if (!isset($data['direction'])) {
-            send_response(400, ['error' => 'No se proporcionó una dirección']);
-            return;
-        }
+{
+    if (!isset($data['direction'])) {
+        send_response(400, ['error' => 'No se proporcionó una dirección']);
+        return;
+    }
 
-        // Obtener posición actual del jugador
-        $sql = "SELECT position_x, position_y FROM players WHERE id = ?";
+    // Obtener posición actual del jugador
+    $sql = "SELECT position_x, position_y FROM players WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $this->player_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        send_response(404, ['error' => 'Jugador no encontrado']);
+        return;
+    }
+
+    $player = $result->fetch_assoc();
+    $new_x = $player['position_x'];
+    $new_y = $player['position_y'];
+
+    // Calcular nueva posición basada en la dirección
+    switch ($data['direction']) {
+        case 'up':
+            $new_y -= 1;
+            break;
+        case 'down':
+            $new_y += 1;
+            break;
+        case 'left':
+            $new_x -= 1;
+            break;
+        case 'right':
+            $new_x += 1;
+            break;
+        default:
+            send_response(400, ['error' => 'Dirección no válida']);
+            return;
+    }
+
+    // Validar que la nueva posición esté dentro del mapa
+    if ($new_x < 0 || $new_y < 0 || $new_x >= 10 || $new_y >= 10) {
+        send_response(400, ['error' => 'Movimiento fuera de los límites del mapa']);
+        return;
+    }
+
+    // Verificar si la casilla es accesible (no agua por ejemplo)
+    $sql = "SELECT * FROM map_tiles WHERE x = ? AND y = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ii", $new_x, $new_y);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        send_response(400, ['error' => 'Casilla no encontrada']);
+        return;
+    }
+
+    $tile = $result->fetch_assoc();
+
+    // Si es agua, no permitir el movimiento
+    if ($tile['type'] === 'water') {
+        send_response(400, ['error' => 'No puedes moverte a través del agua']);
+        return;
+    }
+
+    // Verificar si hay objetos cerca para recoger en la nueva casilla
+    $sql = "
+        SELECT om.id AS object_map_id, o.name, o.type, o.description, om.quantity, mt.x, mt.y
+        FROM object_map om
+        JOIN objects o ON om.objectId = o.id
+        JOIN map_tiles mt ON om.tilesId = mt.id
+        WHERE mt.x = ? AND mt.y = ?
+        AND om.is_taken = 0
+    ";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ii", $new_x, $new_y);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $objects_nearby = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $objects_nearby[] = [
+            'object_map_id' => $row['object_map_id'],
+            'name' => $row['name'],
+            'type' => $row['type'],
+            'description' => $row['description'],
+            'quantity' => $row['quantity'],
+            'x' => $row['x'],
+            'y' => $row['y']
+        ];
+
+        // Recoger el objeto automáticamente
+        $this->recogerObjeto($row);
+    }
+
+    // Actualizar la posición del jugador
+    $sql = "UPDATE players SET position_x = ?, position_y = ? WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("iii", $new_x, $new_y, $this->player_id);
+
+    if ($stmt->execute()) {
+        // Actualizar estadísticas (incrementar pasos)
+        $sql = "UPDATE player_stats SET steps_taken = steps_taken + 1 WHERE player_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $this->player_id);
+        $stmt->execute();
+
+        // Verificar si hay un encuentro con enemigo
+        $encounter = $this->checkEncounter($tile);
+
+        // Obtener jugador actualizado
+        $sql = "SELECT * FROM players WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $this->player_id);
         $stmt->execute();
         $result = $stmt->get_result();
+        $updated_player = $result->fetch_assoc();
 
-        if ($result->num_rows === 0) {
-            send_response(404, ['error' => 'Jugador no encontrado']);
-            return;
-        }
+        $response = [
+            'player' => $updated_player,
+            'tile' => $tile
+        ];
 
-        $player = $result->fetch_assoc();
-        $new_x = $player['position_x'];
-        $new_y = $player['position_y'];
-
-        // Calcular nueva posición basada en la dirección
-        switch ($data['direction']) {
-            case 'up':
-                $new_y -= 1;
-                break;
-            case 'down':
-                $new_y += 1;
-                break;
-            case 'left':
-                $new_x -= 1;
-                break;
-            case 'right':
-                $new_x += 1;
-                break;
-            default:
-                send_response(400, ['error' => 'Dirección no válida']);
-                return;
-        }
-
-        // Validar que la nueva posición esté dentro del mapa
-        if ($new_x < 0 || $new_y < 0 || $new_x >= 10 || $new_y >= 10) {
-            send_response(400, ['error' => 'Movimiento fuera de los límites del mapa']);
-            return;
-        }
-
-        // Verificar si la casilla es accesible (no agua por ejemplo)
-        $sql = "SELECT * FROM map_tiles WHERE x = ? AND y = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ii", $new_x, $new_y);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows === 0) {
-            send_response(400, ['error' => 'Casilla no encontrada']);
-            return;
-        }
-
-        $tile = $result->fetch_assoc();
-
-        // Si es agua, no permitir el movimiento
-        if ($tile['type'] === 'water') {
-            send_response(400, ['error' => 'No puedes moverte a través del agua']);
-            return;
-        }
-
-        // Verificar si hay objetos cerca para recoger en la nueva casilla
-        $sql = "
-            SELECT om.id AS object_map_id, o.name, o.type, o.description, om.quantity, mt.x, mt.y
-            FROM object_map om
-            JOIN objects o ON om.objectId = o.id
-            JOIN map_tiles mt ON om.tilesId = mt.id
-            WHERE mt.x = ? AND mt.y = ?
-            AND om.is_taken = 0
-        ";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ii", $new_x, $new_y);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        $objects_nearby = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $objects_nearby[] = [
-                'object_map_id' => $row['object_map_id'],
-                'name' => $row['name'],
-                'type' => $row['type'],
-                'description' => $row['description'],
-                'quantity' => $row['quantity'],
-                'x' => $row['x'],
-                'y' => $row['y']
-            ];
-        }
-
-        // Actualizar la posición del jugador
-        $sql = "UPDATE players SET position_x = ?, position_y = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("iii", $new_x, $new_y, $this->player_id);
-
-        if ($stmt->execute()) {
-            // Actualizar estadísticas (incrementar pasos)
-            $sql = "UPDATE player_stats SET steps_taken = steps_taken + 1 WHERE player_id = ?";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("i", $this->player_id);
-            $stmt->execute();
-
-            // Verificar si hay un encuentro con enemigo
-            $encounter = $this->checkEncounter($tile);
-
-            // Obtener jugador actualizado
-            $sql = "SELECT * FROM players WHERE id = ?";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("i", $this->player_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $updated_player = $result->fetch_assoc();
-
-            $response = [
-                'player' => $updated_player,
-                'tile' => $tile
-            ];
-
-            // Añadir objetos cercanos a la respuesta si existen
-            if (count($objects_nearby) > 0) {
-                $response['objects_nearby'] = $objects_nearby;
-            } else {
-                $response['message'] = 'No hay objetos cercanos para recoger.';
-            }
-
-            // Añadir información del encuentro si hay uno
-            if ($encounter) {
-                $response['encounter'] = $encounter;
-            }
-
-            send_response(200, $response);
+        // Añadir objetos cercanos a la respuesta si existen
+        if (count($objects_nearby) > 0) {
+            $response['objects_nearby'] = $objects_nearby;
         } else {
-            send_response(500, ['error' => 'Error al mover al jugador']);
+            $response['message'] = 'No hay objetos cercanos para recoger.';
         }
+
+        // Añadir información del encuentro si hay uno
+        if ($encounter) {
+            $response['encounter'] = $encounter;
+        }
+
+        send_response(200, $response);
+    } else {
+        send_response(500, ['error' => 'Error al mover al jugador']);
     }
+}
+
+/**
+ * Función para recoger el objeto
+ */
+private function recogerObjeto($object)
+{
+    // Añadir el objeto al inventario del jugador
+    $sql = "INSERT INTO object_player (playerId, objectId, quantity) 
+            VALUES (?, ?, 1)
+            ON DUPLICATE KEY UPDATE quantity = quantity + 1";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ii", $this->player_id, $object['objectId']);
+    $stmt->execute();
+
+    // Marcar el objeto como recogido en el mapa
+    $sql = "UPDATE object_map SET is_taken = 1 WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $object['object_map_id']);
+    $stmt->execute();
+}
 
 
     /**
