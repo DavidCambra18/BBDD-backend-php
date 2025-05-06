@@ -56,7 +56,8 @@ $sql = "CREATE TABLE IF NOT EXISTS objects (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
-    description VARCHAR(200) NOT NULL
+    description VARCHAR(200) NOT NULL,
+    effect_value INT DEFAULT 0
 )";
 
 if ($conn->query($sql) === FALSE) {

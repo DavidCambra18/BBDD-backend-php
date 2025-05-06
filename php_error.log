@@ -165,3 +165,11 @@ Stack trace:
 #0 C:\xampp\htdocs\backend-php\index.php(44): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'rpg_game', '3307')
 #1 {main}
   thrown in C:\xampp\htdocs\backend-php\index.php on line 44
+[06-May-2025 10:40:28 Europe/Berlin] Session state before check: {"session_id":"pvaj9ecu2q8ri1v57etj7otbv3","combat_active":"not set","has_enemy":"no"}
+[06-May-2025 10:40:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\backend-php\controllers\game_controller.php on line 52
+[06-May-2025 10:42:39 Europe/Berlin] PHP Warning:  include_once(controllers/pickup_controller.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\backend-php\index.php on line 187
+[06-May-2025 10:42:39 Europe/Berlin] PHP Warning:  include_once(): Failed opening 'controllers/pickup_controller.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\backend-php\index.php on line 187
+[06-May-2025 10:42:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "PickUpController" not found in C:\xampp\htdocs\backend-php\index.php:188
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\backend-php\index.php on line 188

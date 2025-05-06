@@ -1,10 +1,11 @@
 <?php
+
 /**
  * API Principal para el juego RPG
  * Este archivo actúa como punto de entrada para la API
  */
 
- session_set_cookie_params([
+session_set_cookie_params([
     'lifetime' => 0,
     'path' => '/',
     'domain' => '',
@@ -78,7 +79,7 @@ switch ($endpoint) {
     case 'player':
         include_once 'controllers/player_controller.php';
         $controller = new PlayerController($conn);
-        
+
         if ($resource_id === 'stats') {
             // GET /player/stats
             if ($request_method === 'GET') {
@@ -97,7 +98,7 @@ switch ($endpoint) {
             // GET /player
             if ($request_method === 'GET') {
                 $controller->getPlayer();
-            } 
+            }
             // PUT /player
             elseif ($request_method === 'PUT') {
                 $controller->updatePlayer($request_data);
@@ -106,11 +107,11 @@ switch ($endpoint) {
             }
         }
         break;
-        
+
     case 'map':
         include_once 'controllers/map_controller.php';
         $controller = new MapController($conn);
-        
+
         // GET /map
         if ($request_method === 'GET') {
             $controller->getMap();
@@ -118,11 +119,41 @@ switch ($endpoint) {
             send_response(405, ['error' => 'Método no permitido']);
         }
         break;
-        
+
+    case 'pickup':
+        include_once 'controllers/pickup_item_controller.php';
+        $controller = new PickUpController($conn);
+
+        // POST /pickup
+        if ($request_method === 'POST') {
+            $playerId = $_SESSION['player_id'] ?? 1;
+            $controller->pickUpItem($playerId);
+        } else {
+            send_response(405, ['error' => 'Método no permitido']);
+        }
+        break;
+
+    case 'inventory':
+        include_once 'controllers/inventory_controller.php';
+        $controller = new InventoryController($conn);
+
+        // POST /inventory
+        if ($resource_id === 'use' && $request_method === 'POST') {
+            $playerId = $_SESSION['player_id'] ?? 1;
+            $objectId = $request_data['objectId'] ?? null;
+            if ($objectId === null) {
+                send_response(400, ['error' => 'Falta objectId']);
+            }
+            $controller->useItem($playerId, $objectId);
+        } else {
+            send_response(404, ['error' => 'Endpoint de inventory no válido']);
+        }
+        break;
+
     case 'combat':
         include_once 'controllers/combat_controller.php';
         $controller = new CombatController($conn);
-        
+
         switch ($resource_id) {
             case 'start':
                 // POST /combat/start
@@ -132,7 +163,7 @@ switch ($endpoint) {
                     send_response(405, ['error' => 'Método no permitido']);
                 }
                 break;
-                
+
             case 'attack':
                 // POST /combat/attack
                 if ($request_method === 'POST') {
@@ -141,7 +172,7 @@ switch ($endpoint) {
                     send_response(405, ['error' => 'Método no permitido']);
                 }
                 break;
-                
+
             case 'flee':
                 // POST /combat/flee
                 if ($request_method === 'POST') {
@@ -150,7 +181,7 @@ switch ($endpoint) {
                     send_response(405, ['error' => 'Método no permitido']);
                 }
                 break;
-                
+
             case 'end':
                 // POST /combat/end
                 if ($request_method === 'POST') {
@@ -159,18 +190,18 @@ switch ($endpoint) {
                     send_response(405, ['error' => 'Método no permitido']);
                 }
                 break;
-                
+
             default:
                 send_response(404, ['error' => 'Endpoint no encontrado']);
                 break;
         }
         break;
-        
+
     case 'game':
         if ($resource_id === 'restart') {
             include_once 'controllers/game_controller.php';
             $controller = new GameController($conn);
-            
+
             // POST /game/restart
             if ($request_method === 'POST') {
                 $controller->restartGame();
@@ -181,7 +212,9 @@ switch ($endpoint) {
             send_response(404, ['error' => 'Endpoint no encontrado']);
         }
         break;
-        
+
+
+
     default:
         // Ruta no encontrada
         send_response(404, ['error' => "Endpoint $endpoint no encontrado"]);
@@ -189,7 +222,8 @@ switch ($endpoint) {
 }
 
 // Función para enviar respuestas JSON
-function send_response($status_code, $data) {
+function send_response($status_code, $data)
+{
     http_response_code($status_code);
     echo json_encode($data);
     exit;
@@ -197,4 +231,3 @@ function send_response($status_code, $data) {
 
 // Cerrar la conexión a la base de datos
 $conn->close();
-?>
